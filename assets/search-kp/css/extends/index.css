@@ -1,0 +1,58 @@
+#wrapper img{
+	margin-top: 4px;
+}
+
+.menu{
+    margin-left: 0px;
+    font-size: 1.21em;
+}
+
+.menu2{
+	font-size: 1.21em;
+}
+
+.active{
+	border-bottom: solid red;
+}
+
+.ticket-box{
+	margin-top: 10px;
+	margin-left: 18%;
+}
+
+.jadwal-box{
+	margin-top: 10px;
+}
+
+
+#header img{
+	margin-top: 12px;
+	margin-left: 9px;
+}
+
+.subheader{
+	margin-top: 5px;
+}
+
+.kiri{
+	border-left: solid red;
+}
+
+#footer {
+  position: absolute;
+  bottom: -10px;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+  left: 40%;
+}
+table{
+   border: 1px solid black;
+   text-align: center;
+   width: 100%;
+}
+th{
+	background-color: black;
+	text-align: center;
+	color: white;
+}

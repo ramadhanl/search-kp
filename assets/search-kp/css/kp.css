@@ -1,0 +1,62 @@
+.judul{
+	font-size: 16px;
+	color: blue;
+}
+.penulis{
+	font-size: 13px;
+	color: green;
+
+}
+.result{
+	margin-top: 40px;
+}
+
+.nav-search{
+	height: 60px;
+	background-color: #F1F1F1;
+	padding: 10px;
+	text-align: center;
+	margin-bottom: 70px;
+}
+.bold{
+	font-size: 20px;
+	color: black;
+}
+.tag-big{
+	font-size: 30px;
+	color: black;
+}
+.search{
+	text-align: center;
+	margin-top: 200px;
+}
+.search-box{
+	
+	height: 40px;
+	width: 500px;
+	background-color: white;
+	padding: 10px;
+	font-size: 18px;
+	border : 1px solid #d6cbcb;
+}
+.search-button{
+	background-color: #FFD777;
+	color: white;
+	font-size: 18px;
+	padding: 7.5px;
+	text-align: center;
+	border : 0px solid #F6F6F6;
+}
+.populer {
+	margin-top: 40px;
+	padding: 15px;
+	width: 150px;
+	background-color: #F6F6F6;
+	color: #b2aeae;
+	display: inline-block;
+}
+.populer:hover{
+	text-decoration: none;
+	border: 1px solid #b2aeae;
+	color: black;
+}

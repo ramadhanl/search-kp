@@ -1,417 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
   <head>
-    <title>Pendaftaran Beasiswa</title>
-    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/icon.png">
-    
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- css -->
-    <link href="<?php echo base_url(); ?>assets/mamba/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="<?php echo base_url(); ?>assets/mamba/css/style.css" rel="stylesheet" media="screen">
-    <link href="<?php echo base_url(); ?>assets/mamba/color/default.css" rel="stylesheet" media="screen">
-    <script src="<?php echo base_url(); ?>assets/mamba/js/modernizr.custom.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>Search KP - RBTC</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="<?php echo base_url(); ?>assets/search-kp/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="<?php echo base_url(); ?>assets/search-kp/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        
+    <!-- Custom styles for this template -->
+    <link href="<?php echo base_url(); ?>assets/search-kp/css/style.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/search-kp/css/style-responsive.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/search-kp/css/kp.css" rel="stylesheet">
   </head>
-    <body>
-    <div class="menu-area">
-            <div id="dl-menu" class="dl-menuwrapper">
-                        <button class="dl-trigger">Open Menu</button>
-                        <ul class="dl-menu">
-                            <li>
-                                <a href="<?php echo base_url(); ?>pegawai/login_pegawai">Login pegawai</a>
-                            </li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#services">Services</a></li>
-                            <li><a href="#works">Works</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li>
-                                <a href="#">Sub Menu</a>
-                                <ul class="dl-submenu">
-                                    <li><a href="#">Sub menu</a></li>
-                                    <li><a href="#">Sub menu</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div><!-- /dl-menuwrapper -->
-    </div>  
 
-      <!-- intro area -->     
-      <div id="intro">
+  <body>
+
+  <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+      <header class="header black-bg">
+              <div class="sidebar-toggle-box">
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+              </div>
+            <!--logo start-->
+            <a href="index.html" class="logo"><b>Search-KP</b></a>
+            <!--logo end-->
+        </header>
+      <!--header end-->
       
-            <div class="intro-text">
-                <div class="container">
-                    <div class="row">
+      <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+      <!--sidebar start-->
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">
+              
+                  <p class="centered"><a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/search-kp/img/rbtc.jpg" class="img-square" width="170"></a></p>
+                  <!-- <h5 class="centered">STKI</h5> -->
                     
-                        
-                    <div class="col-md-12">
-            
-                        <div class="brand">
-                            <h1><a href="index.html">Beasiswa</a></h1>
-                            <div class="line-spacer"></div>
-                            <p><span>Situs pendaftaran beasiswa</span></p>
+                  <li class="mt">
+                      <a class="active" href="<?php echo base_url(); ?>">
+                          <i class="fa fa-dashboard"></i>
+                          <span>Pencarian laporan KP</span>
+                      </a>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Top Tags</span>
+                      </a>
+                      <ul class="sub">
+                      <?php
+                        $this->db->distinct();
+                        $this->db->select('tahun');
+                        $this->db->order_by("tahun", "desc");
+                        $sql=$this->db->get('stki_top_tags'); 
+                        foreach ($sql->result() as $row){
+                          if($row->tahun==9999)
+                            echo '<li><a  href="'.base_url().'home/display_top_tags/'.$row->tahun.'">All the time</a></li>';
+                          else
+                            echo '<li><a  href="'.base_url().'home/display_top_tags/'.$row->tahun.'">'.$row->tahun.'</a></li>';
+                        }
+                      ?>
+                      </ul>
+                  </li>
+
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      <!--sidebar end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper site-min-height">
+            <div class="row mt">
+              <div class="col-lg-12">
+              <?php
+                if ($query!=4869) {
+                  echo '<div class="nav-search" id="nav-search">
+                          <form action="'.base_url().'home/search" method="POST">
+                            <input type="text" name="searchbox" class="search-box" id="searchbox">
+                            <input type="submit" value="Search" class="search-button">
+                          </form>
                         </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-            
-     </div>
-      
-
-      
-      
-      <!-- About -->
-      <section id="about" class="home-section bg-white">
-        <div class="container">
-              <div class="row">
-                  <div class="col-md-offset-2 col-md-8">
-                    <div class="section-heading">
-                     <h2>Kategori beasiswa</h2>
-                     <p>Tentukan beasiswa yang paling cocok untuk anda</p>
-                    </div>
-                  </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                </div>
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.3s">
-                    <div class="box-team wow bounceInDown">
-                    <a href="<?php echo base_url(); ?>form/beasiswa1"><img src="<?php echo base_url(); ?>assets/img/beasiswa1.png" alt="" class="img-responsive" /></a>
-                    <a href="<?php echo base_url(); ?>form/beasiswa1"><h4>Beasiswa Peningkatan Prestasi Akademik (PPA)</h4></a>
-                    <p><a href="#">-Hasil Seleksi-</a></p>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.5s">
-                    <div class="box-team wow bounceInDown">
-                    <a href="<?php echo base_url(); ?>form/beasiswa1"><img src="<?php echo base_url(); ?>assets/img/beasiswa2.png" alt="" class="img-responsive" /></a>
-                    <a href="<?php echo base_url(); ?>form/beasiswa1"><h4>Beasiswa Bantuan Biaya Pendidikan (BBP)</h4></a>
-                    <p><a href="#">-Hasil Seleksi-</a></p>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.7s">
-                </div>
-              </div>              
-          </div>      
-      </section>
-      
-        <!-- spacer -->   
-<!--        <section id="spacer1" class="home-section spacer">  
-           <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="color-light">
-                        <h2 class="wow bounceInDown" data-wow-delay="1s">Details are the key for perfection</h2>
-                        <p class="lead wow bounceInUp" data-wow-delay="2s">We mix all detailed things together</p>  
+                        <div class="col-md-8 search-result" id="search-result">';
+                  echo '<h4>Hasil pencarian dengan query :  <i>'.str_ireplace('%20', " ", $query).'</i> </h4>';
+                  $this->db->where('score >', '0');
+                  $this->db->order_by("score", "desc");
+                  //$this->db->limit(10);
+                  $sql=$this->db->get('stki_search_results');
+                  $result=$sql->num_rows();
+                  echo "<p style='color:grey;font-size:12px;'>Didapatkan ".$result." data laporan kerja praktek yang sesuai (".$totaltime." detik)</p>";
+                  $count=0;
+                  foreach ($sql->result() as $row) {
+                    echo '<div class="result">';
+                    echo '<p class="judul"><a href="http://rbtc.if.its.ac.id/v3/index.php?p=show_detail&id='.$row->id_doc.'">'.$row->judul.'</a></p>';
+                    echo '<p class="penulis">Penulis : '.$row->penulis.'</p>';
+                    echo '<p class="tags">Tahun terbit : '.$row->tahun.'</p>';
+                    $count++;
+                  }
+                }
+                else{
+                  echo '<div style="margin-top:250px;" class="nav-search" id="nav-search">
+                          <form action="'.base_url().'home/search" method="POST">
+                            <input type="text" name="searchbox" class="search-box" id="searchbox">
+                            <input type="submit" value="Search" class="search-button">
+                          </form>
                         </div>
-                    </div>              
-                </div>
+                        <div class="col-md-8 search-result" id="search-result">';
+                }
+              ?>
+              </div>
+              </div>
             </div>
-        </section>    
       
-       Services -->
-<!--     <section id="services" class="home-section bg-white">
-        <div class="container">
-              <div class="row">
-                  <div class="col-md-offset-2 col-md-8">
-                    <div class="section-heading">
-                     <h2>Services</h2>
-                     <p>Est te congue scaevola comprehensam. No pri simul decore, in partem electram voluptatibus vel esse facer.</p>
-                    </div>
-                  </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                    <div class="service-box wow bounceInDown" data-wow-delay="0.1s">
-                        <i class="fa fa-code fa-4x"></i>
-                        <h4>Valid HTML5</h4>
-                        <p>Lorem ipsum dolor sit amet, ut decore iracundia urbanitas sit.</p>
-                        <a class="btn btn-primary">Learn more</a>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.3s">
-                    <div class="service-box wow bounceInDown" data-wow-delay="0.1s">
-                        <i class="fa fa-cog fa-4x"></i>
-                        <h4>Easy to Customize</h4>
-                        <p>Lorem ipsum dolor sit amet, ut decore iracundia urbanitas sit.</p>
-                        <a class="btn btn-primary">Learn more</a>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.5s">
-                    <div class="service-box wow bounceInDown" data-wow-delay="0.1s">
-                        <i class="fa fa-desktop fa-4x"></i>
-                        <h4>Responsive Layout</h4>
-                        <p>Lorem ipsum dolor sit amet, ut decore iracundia urbanitas sit.</p>
-                        <a class="btn btn-primary">Learn more</a>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.7s">
-                    <div class="service-box wow bounceInDown" data-wow-delay="0.1s">
-                        <i class="fa fa-dropbox fa-4x"></i>
-                        <h4>Ready to use</h4>
-                        <p>Lorem ipsum dolor sit amet, ut decore iracundia urbanitas sit.</p>
-                        <a class="btn btn-primary">Learn more</a>
-                    </div>
-                </div>
-              </div>    
-        </div>
-    </section>
-    
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="<?php echo base_url(); ?>assets/search-kp/js/jquery.js"></script>
+    <script src="<?php echo base_url(); ?>assets/search-kp/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/search-kp/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/search-kp/js/jquery.ui.touch-punch.min.js"></script>
+    <script class="include" type="text/javascript" src="<?php echo base_url(); ?>assets/search-kp/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="<?php echo base_url(); ?>assets/search-kp/js/jquery.scrollTo.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/search-kp/js/jquery.nicescroll.js" type="text/javascript"></script>
 
-    <section id="works" class="home-section bg-gray">
-            <div class="container">
-              <div class="row">
-                  <div class="col-md-offset-2 col-md-8">
-                    <div class="section-heading">
-                     <h2>Works</h2>
-                     <p>Dicunt tamquam dissentiet vix ex, ne mei dico reformidans, accumsan gloriatur necessitatibus eu sit.</p>
-                    </div>
-                  </div>
-              </div>
-                <div class="row">
-                    <div class="col-md-offset-2 col-md-8">
-                    
-                    <ul class="lb-album">
-                        <li>
-                            <a href="#image-1">
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/thumbs/1.jpg" alt="">
-                                <span>+</span>
-                            </a>
-                            <div class="lb-overlay" id="image-1">
-                                <a href="#page" class="lb-close">X</a>
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/1.jpg" alt="" />
-                                <div>
-                                    <h3>Sleek <span>/Design/</h3>
-                                    <p>Lorem ipsum dolor sit amet, ut decore iracundia urbanitas sit.</p>
-                                </div>
-                                
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#image-2">
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/thumbs/2.jpg" alt="">
-                                <span>+</span>
-                            </a>
-                            <div class="lb-overlay" id="image-2">
-                                <a href="#page" class="lb-close">x Close</a>
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/2.jpg" alt="" />
-                                <div>
-                                    <h3>Sleek <span>/Design/</h3>
-                                    <p>Lorem ipsum dolor sit amet, ut decore iracundia urbanitas sit.</p>
-                                </div>
-                                
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#image-3">
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/thumbs/3.jpg" alt="">
-                                <span>+</span>
-                            </a>
-                            <div class="lb-overlay" id="image-3">
-                                <a href="#page" class="lb-close">x Close</a>
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/3.jpg" alt="" />
-                                <div>
-                                    <h3>Sleek <span>/Design/</h3>
-                                    <p>Lorem ipsum dolor sit amet, ut decore iracundia urbanitas sit.</p>
-                                </div>
-                                
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#image-4">
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/thumbs/4.jpg" alt="">
-                                <span>+</span>
-                            </a>
-                            <div class="lb-overlay" id="image-4">
-                                <a href="#page" class="lb-close">x Close</a>
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/4.jpg" alt="" />
-                                <div>
-                                    <h3>Sleek <span>/Design/</h3>
-                                    <p>Lorem ipsum dolor sit amet, ut decore iracundia urbanitas sit.</p>
-                                </div>
-                                
-                            </div>
-                        </li>
-                        
-                        <li>
-                            <a href="#image-5">
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/thumbs/5.jpg" alt="">
-                                <span>+</span>
-                            </a>
-                            <div class="lb-overlay" id="image-5">
-                                <a href="#page" class="lb-close">X</a>
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/5.jpg" alt="" />
-                                <div>
-                                    <h3>Sleek <span>/Design/</h3>
-                                    <p>Lorem ipsum dolor sit amet, ut decore iracundia urbanitas sit.</p>
-                                </div>
-                                
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#image-6">
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/thumbs/6.jpg" alt="">
-                                <span>+</span>
-                            </a>
-                            <div class="lb-overlay" id="image-6">
-                                <a href="#page" class="lb-close">x Close</a>
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/6.jpg" alt="" />
-                                <div>
-                                    <h3>Sleek <span>/Design/</h3>
-                                    <p>Lorem ipsum dolor sit amet, ut decore iracundia urbanitas sit.</p>
-                                </div>
-                                
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#image-7">
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/thumbs/7.jpg" alt="">
-                                <span>+</span>
-                            </a>
-                            <div class="lb-overlay" id="image-7">
-                                <a href="#page" class="lb-close">x Close</a>
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/7.jpg" alt="" />
-                                <div>
-                                    <h3>Sleek <span>/Design/</h3>
-                                    <p>Lorem ipsum dolor sit amet, ut decore iracundia urbanitas sit.</p>
-                                </div>
-                                
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#image-8">
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/thumbs/8.jpg" alt="">
-                                <span>+</span>
-                            </a>
-                            <div class="lb-overlay" id="image-8">
-                                <a href="#page" class="lb-close">x Close</a>
-                                <img src="<?php echo base_url(); ?>assets/mamba/img/works/8.jpg" alt="" />
-                                <div>
-                                    <h3>Sleek <span>/Design/</h3>
-                                    <p>Lorem ipsum dolor sit amet, ut decore iracundia urbanitas sit.</p>
-                                </div>
-                                
-                            </div>
-                        </li>
-                    </ul>
-                    
-                    </div>
-                </div>
-            </div>
-        </section>    
-    
-    
-        <section id="spacer2" class="home-section spacer">  
-           <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="color-light">
-                        <h2 class="wow bounceInDown" data-wow-delay="1s">Details are the key for perfection</h2>
-                        <p class="lead wow bounceInUp" data-wow-delay="2s">We mix all detailed things together</p>  
-                        </div>
-                    </div>              
-                </div>
-            </div>
-        </section>  
 
-      <section id="contact" class="home-section bg-white">
-        <div class="container">
-              <div class="row">
-                  <div class="col-md-offset-2 col-md-8">
-                    <div class="section-heading">
-                     <h2>Contact us</h2>
-                     <p>Contact via form below and we will be get in touch with you within 24 hours. </p>
-                    </div>
-                  </div>
-              </div>
+    <!--common script for all pages-->
+    <script src="<?php echo base_url(); ?>assets/search-kp/js/common-scripts.js"></script>
 
-            <div class="row">
-                <div class="col-md-offset-1 col-md-10">
-
-                <form class="form-horizontal" role="form">
-                  <div class="form-group">
-                    <div class="col-md-offset-2 col-md-8">
-                      <input type="text" class="form-control" id="inputName" placeholder="Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-md-offset-2 col-md-8">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-md-offset-2 col-md-8">
-                      <input type="text" class="form-control" id="inputSubject" placeholder="Subject">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-md-offset-2 col-md-8">
-                      <textarea name="message" class="form-control" rows="3" placeholder="Message"></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-md-offset-2 col-md-8">
-                     <button type="button" class="btn btn-theme btn-lg btn-block">Send message</button>
-                    </div>
-                  </div>
-                </form>
+    <!--script for this page-->
     
-                </div>
-            
-                
-            </div>
-            <div class="row mar-top30 ">
-                <div class="col-md-offset-2 col-md-8">
-                    <h5>We're on social networks</h5>
-                    <ul class="social-network">
-                        <li><a href="#">
-                        <span class="fa-stack fa-2x">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                        </span></a>
-                        </li>
-                        <li><a href="#">
-                        <span class="fa-stack fa-2x">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-dribbble fa-stack-1x fa-inverse"></i>
-                        </span></a>
-                        </li>
-                        <li><a href="#">
-                        <span class="fa-stack fa-2x">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                        </span></a>
-                        </li>
-                        <li><a href="#">
-                        <span class="fa-stack fa-2x">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
-                        </span></a>
-                        </li>
-                    </ul>
-                </div>              
-            </div>
+  <script>
+      //custom select box
 
-        </div>
-      </section>  
--->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Ramadhan Rosihadi Perdana - Teknik Informatika ITS</p>
-                </div>
-            </div>      
-        </div>  
-    </footer>
-     
-     <!-- js -->
-    <script src="<?php echo base_url(); ?>assets/mamba/js/jquery.js"></script>
-    <script src="<?php echo base_url(); ?>assets/mamba/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/mamba/js/jquery.smooth-scroll.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/mamba/js/jquery.dlmenu.js"></script>
-    <script src="<?php echo base_url(); ?>assets/mamba/js/wow.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/mamba/js/custom.js"></script>
-    
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+
+  </body>
 </html>
